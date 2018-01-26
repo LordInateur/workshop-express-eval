@@ -24,20 +24,22 @@ function getBingo(stringNumbersList, callback){
       resList = data.split('\r\n').slice(0,-1).map(value=>Number(value)).sort() //.join()
       nbExpectedNumber = resList.length
 
-      if(stringNumbersList.split(',').length == nbExpectedNumber){
+      if(stringNumbersList == undefined){
+      	callback(undefined, 'he bingo game is already started and known numbers are ' + resList.join())
+      }else if(stringNumbersList.split(',').length == nbExpectedNumber){
         try {
           guestList = stringNumbersList.split(',').map(value=>Number(value)).sort()
           if (victoryTest(resList, guestList)){
           	callback(undefined, 'Bingo !!!\nres was : ' + resList.join());
           }else{
-          	callback(undefined, 'Try again :)');
+          	callback(undefined, 'The bingo game is already started, sorry your numbers doesn\'t match with known numbers ' + resList.join() +' ; so you can not say Bingo');
           }
         }
         catch(error){
           callback('You should pass a list of numbers', undefined)
         }
       }else{
-        callback('You should give exaclty ' + nbExpectedNumber + ' numbers to start the game.', undefined )
+        callback('You should give exaclty ' + nbExpectedNumber + ' numbers to play the game.', undefined )
       }
       
     }
