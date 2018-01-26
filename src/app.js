@@ -1,3 +1,5 @@
-const app = '... please declare your Express web server here';
+const express = require('express');
+
+const app = express();
 
 module.exports = app;
