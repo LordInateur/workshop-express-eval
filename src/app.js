@@ -25,14 +25,14 @@ function getBingo(stringNumbersList, callback){
       nbExpectedNumber = resList.length
 
       if(stringNumbersList == undefined){
-      	callback(undefined, 'he bingo game is already started and known numbers are ' + resList.join())
+      	callback(undefined, 'he bingo game is already started and known numbers are ' + resList.join(', '))
       }else if(stringNumbersList.split(',').length == nbExpectedNumber){
         try {
           guestList = stringNumbersList.split(',').map(value=>Number(value)).sort()
           if (victoryTest(resList, guestList)){
-          	callback(undefined, 'Bingo !!!\nres was : ' + resList.join());
+          	callback(undefined, 'Bingo !!!\nres was : ' + resList.join(', '));
           }else{
-          	callback(undefined, 'The bingo game is already started, sorry your numbers doesn\'t match with known numbers ' + resList.join() +' ; so you can not say Bingo');
+          	callback(undefined, 'The bingo game is already started, sorry your numbers doesn\'t match with known numbers ' + resList.join(', ') +' ; so you can not say Bingo');
           }
         }
         catch(error){
